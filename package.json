@@ -1,0 +1,19 @@
+{
+  "name": "drivingapp",
+  "version": "1.0.0",
+  "description": "App for driving school",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yamikhailov/drivingApp.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yamikhailov/drivingApp/issues"
+  },
+  "homepage": "https://github.com/yamikhailov/drivingApp#readme"
+}

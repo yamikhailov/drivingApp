@@ -1,23 +1,23 @@
-<nav id="navbar-main" class="navbar navbar-main navbar-expand-lg navbar-transparent navbar-light headroom headroom--top headroom--pinned">
+<nav id="navbar-main" class="navbar bg-primary navbar-main navbar-expand-lg navbar-transparent navbar-light headroom headroom--top headroom--pinned">
     <div class="container">
       <a class="navbar-brand mr-lg-5" [routerLink]="['/home']">
         Автошкола+
       </a>
-      <button class="navbar-toggler" type="button" 
-            [attr.aria-expanded]="" aria-controls="navbar_global">
+      <button class="navbar-toggler" type="button" (click)="isCollapsed = !isCollapsed"
+            [attr.aria-expanded]="!isCollapsed" aria-controls="navbar_global">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="navbar-collapse collapse" id="navbar_global">
+      <div class="navbar-collapse collapse" id="navbar_global" [ngbCollapse]="isCollapsed">
         <div class="navbar-collapse-header">
           <div class="row">
             <div class="col-6 collapse-brand">
               <a [routerLink]="['/home']">
-                <img src="./assets/img/brand/blue.png">
+                <span class="h5">Автошкола+</span>
               </a>
             </div>
             <div class="col-6 collapse-close">
-              <button type="button" class="navbar-toggler"
-                    [attr.aria-expanded]="" aria-controls="navbar_global">
+              <button type="button" class="navbar-toggler" (click)="isCollapsed = !isCollapsed"
+                    [attr.aria-expanded]="!isCollapsed" aria-controls="navbar_global">
                 <span></span>
                 <span></span>
               </button>
@@ -26,11 +26,15 @@
         </div>
         
         <ul class="navbar-nav navbar-nav-hover align-items-lg-center">
-          <a class="nav-link no-caret" data-toggle="dropdown" role="button" [routerLink]="">
+          <a class="nav-link no-caret" data-toggle="dropdown" role="button" routerLink="">
             <i class="ni ni-ui-04 d-lg-none"></i>
             <span class="nav-link-inner--text">Головна</span>
           </a>
-          <li class="nav-item dropdown">
+          <a class="nav-link no-caret" data-toggle="dropdown" role="button" routerLink="packages">
+            <i class="ni ni-ui-04 d-lg-none"></i>
+            <span class="nav-link-inner--text">Пропозиції</span>
+          </a>
+          <!-- <li class="nav-item dropdown">
             <a class="nav-link no-caret" data-toggle="dropdown" role="button">
               <i class="ni ni-ui-04 d-lg-none"></i>
               <span class="nav-link-inner--text">Components</span>
@@ -67,7 +71,7 @@
               </div>
             </div>
           </li>
-          <li class="nav-item dropdown">
+          <li class="nav-item dropdown mr-lg-5">
             <a class="nav-link no-caret" data-toggle="dropdown" role="button">
               <i class="ni ni-collection d-lg-none"></i>
               <span class="nav-link-inner--text">Examples</span>
@@ -78,7 +82,13 @@
               <a [routerLink]="['/login']" class="dropdown-item">Login</a>
               <a [routerLink]="['/register']" class="dropdown-item">Register</a>
             </div>
-          </li>
+          </li> -->
+          <a href="#" target="_blank" class="nav-link no-caret text-primary d-lg-none">
+            <span class="btn-inner--icon text-primary">
+              <i class="fa fa-hand-o-right"></i>
+            </span>
+            <span class="nav-link-inner--text text-primary">Особистий кабінет</span>
+          </a>
         </ul>
         <ul class="navbar-nav align-items-lg-center ml-lg-auto">
           <li class="nav-item d-none d-lg-block ml-lg-4">

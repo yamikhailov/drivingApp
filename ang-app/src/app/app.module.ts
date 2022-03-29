@@ -10,6 +10,10 @@ import { HomeComponent } from './sections/home/home.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { PackagesComponent } from './sections/packages/packages.component';
 import { NotFoundComponent } from './shared/not-found/not-found.component';
+import { LoginComponent } from './sections/auth/login/login.component';
+import { RegisterComponent } from './sections/auth/register/register.component';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -17,12 +21,16 @@ import { NotFoundComponent } from './shared/not-found/not-found.component';
     NavbarComponent,
     HomeComponent,
     PackagesComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgbModule
+    NgbModule,
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,6 +1,6 @@
 <nav id="navbar-main" class="navbar bg-primary navbar-main navbar-expand-lg navbar-transparent navbar-light headroom headroom--top headroom--pinned">
     <div class="container">
-      <a class="navbar-brand mr-lg-5" [routerLink]="['/home']">
+      <a class="navbar-brand mr-lg-5" [routerLink]="['']">
         Автошкола+
       </a>
       <button class="navbar-toggler" type="button" (click)="isCollapsed = !isCollapsed"
@@ -86,7 +86,7 @@
               <a [routerLink]="['/register']" class="dropdown-item">Register</a>
             </div>
           </li> -->
-          <a href="#" target="_blank" class="nav-link no-caret text-primary d-lg-none">
+          <a [routerLink]="['signin']" class="nav-link no-caret text-primary d-lg-none">
             <span class="btn-inner--icon text-primary">
               <i class="fa fa-hand-o-right"></i>
             </span>
@@ -95,7 +95,7 @@
         </ul>
         <ul class="navbar-nav align-items-lg-center ml-lg-auto">
           <li class="nav-item d-none d-lg-block ml-lg-4">
-            <a href="https://www.creative-tim.com/product/argon-design-system-angular?ref=adsa-navbar" target="_blank" class="btn btn-neutral btn-icon">
+            <a  [routerLink]="['signin']"  class="btn btn-neutral btn-icon">
               <span class="btn-inner--icon">
                 <i class="fa fa-hand-o-right mr-2"></i>
               </span>

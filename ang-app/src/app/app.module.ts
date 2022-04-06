@@ -18,8 +18,8 @@ import { ProfileViewComponent } from './sections/profile-view/profile-view.compo
 import { authInterceptorProviders } from './helpers/auth.interceptor';
 
 //toastr
-//import { ToastrModule } from 'ngx-toastr';
-//import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -37,7 +37,9 @@ import { authInterceptorProviders } from './helpers/auth.interceptor';
     AppRoutingModule,
     NgbModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot()
   ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent]

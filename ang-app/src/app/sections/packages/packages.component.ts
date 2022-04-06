@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { packages } from './mock-packages';
+import { ProductService } from 'src/app/services/product/product.service';
 
 @Component({
   selector: 'app-packages',
@@ -8,7 +9,7 @@ import { packages } from './mock-packages';
 })
 export class PackagesComponent implements OnInit {
   packages = packages;
-  constructor() { }
+  constructor(public prod: ProductService) { }
   
   ngOnInit(): void {
   }

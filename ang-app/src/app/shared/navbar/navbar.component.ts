@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd, NavigationStart } from '@angular/router';
 import { Location, PopStateEvent } from '@angular/common';
+import { TokenStorageService } from 'src/app/services/token-storage/token-storage.service';
+
+
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -11,7 +14,12 @@ export class NavbarComponent implements OnInit {
   private lastPoppedUrl?: string;
   private yScrollStack: number[] = [];
 
-  constructor(public location: Location, private router: Router) {
+  isLoggedIn = false;
+  username = "";
+  private roles: string[] = [];
+
+
+  constructor(public location: Location, private router: Router, private tokenStorage: TokenStorageService) {
   }
 
   ngOnInit() {
@@ -31,7 +39,23 @@ export class NavbarComponent implements OnInit {
    this.location.subscribe((ev:PopStateEvent) => {
        this.lastPoppedUrl = ev.url!;
    });
+
+
+   // managing auth
+   this.isLoggedIn = !!this.tokenStorage.getToken();
+   if(this.isLoggedIn){
+       const user = this.tokenStorage.getUser();
+       this.roles = user.roles;
+       this.username = user.username;
+
+   }
   }
+
+  logout(){
+    this.tokenStorage.signOut();
+    window.location.reload();
+  }
+
 
   isHome() {
       var titlee = this.location.prepareExternalUrl(this.location.path());

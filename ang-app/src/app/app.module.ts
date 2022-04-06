@@ -14,6 +14,12 @@ import { LoginComponent } from './sections/auth/login/login.component';
 import { RegisterComponent } from './sections/auth/register/register.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { ProfileViewComponent } from './sections/profile-view/profile-view.component';
+import { authInterceptorProviders } from './helpers/auth.interceptor';
+
+//toastr
+//import { ToastrModule } from 'ngx-toastr';
+//import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -23,7 +29,8 @@ import { FormsModule } from '@angular/forms';
     PackagesComponent,
     NotFoundComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    ProfileViewComponent
   ],
   imports: [
     BrowserModule,
@@ -32,7 +39,7 @@ import { FormsModule } from '@angular/forms';
     HttpClientModule,
     FormsModule
   ],
-  providers: [],
+  providers: [authInterceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

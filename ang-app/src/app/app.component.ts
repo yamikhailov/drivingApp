@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs/Subscription';
 import 'rxjs/add/operator/filter';
 import { DOCUMENT } from '@angular/common';
 import { LocationStrategy, PlatformLocation, Location } from '@angular/common';
+import { TokenStorageService } from './services/token-storage/token-storage.service';
 
 var didScroll;
 var lastScrollTop = 0;
@@ -20,7 +21,16 @@ export class AppComponent {
   // @ts-ignore
   private _router: Subscription;
 
-    constructor( private renderer : Renderer2, private router: Router, @Inject(DOCUMENT,) private document: any, private element : ElementRef, public location: Location) {}
+
+
+
+    constructor( private renderer : Renderer2,
+                 private router: Router,
+                 @Inject(DOCUMENT,) private document: any,
+                 private element : ElementRef,
+                 public location: Location,
+                 private tokenStorage: TokenStorageService
+                 ) {}
     @HostListener('window:scroll', ['$event'])
     hasScrolled() {
 
@@ -76,5 +86,12 @@ export class AppComponent {
           });
       });
       this.hasScrolled();
+
+
+    
     }
+
+
+
+
 }

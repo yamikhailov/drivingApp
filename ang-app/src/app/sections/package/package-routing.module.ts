@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { PackagesCartComponent } from './packages-cart/packages-cart.component';
-
+import { PackagesComponent } from './packages/packages.component';
 const routes: Routes = [
-  {path: '', component: PackagesCartComponent}
+  {path: '', component: PackagesComponent},
+  {path: 'cart', component: PackagesCartComponent}
 ];
 
 @NgModule({

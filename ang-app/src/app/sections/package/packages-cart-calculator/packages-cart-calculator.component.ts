@@ -1,5 +1,5 @@
 import { Component, OnInit, OnChanges, SimpleChange, SimpleChanges, Input} from '@angular/core';
-import { Package } from '../../packages/package';
+import { Package } from '../package';
 @Component({
   selector: 'app-packages-cart-calculator',
   templateUrl: './packages-cart-calculator.component.html',

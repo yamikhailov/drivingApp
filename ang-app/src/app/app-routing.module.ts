@@ -13,6 +13,7 @@ const routes: Routes = [
   {path: 'signin', component: LoginComponent},
   {path: 'signup', component: RegisterComponent},
   {path: 'profile/:username', component: ProfileViewComponent},
+  {path: 'cart', loadChildren: () => import('./sections/package/package.module').then(m => m.PackageModule)},
   {path: '**', component: NotFoundComponent}
 ];
 

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd, NavigationStart } from '@angular/router';
 import { Location, PopStateEvent } from '@angular/common';
 import { TokenStorageService } from 'src/app/services/token-storage/token-storage.service';
-
+import { ProductService } from 'src/app/services/product/product.service';
 
 @Component({
   selector: 'app-navbar',
@@ -19,7 +19,7 @@ export class NavbarComponent implements OnInit {
   private roles: string[] = [];
 
 
-  constructor(public location: Location, private router: Router, private tokenStorage: TokenStorageService) {
+  constructor(public location: Location, private router: Router, private tokenStorage: TokenStorageService, public prod: ProductService) {
   }
 
   ngOnInit() {

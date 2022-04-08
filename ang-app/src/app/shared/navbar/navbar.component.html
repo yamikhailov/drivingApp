@@ -34,6 +34,14 @@
             <i class="ni ni-ui-04 d-lg-none"></i>
             <span class="nav-link-inner--text">Пропозиції</span>
           </a>
+          <a *ngIf="isLoggedIn" class="nav-link no-caret" data-toggle="dropdown" role="button" routerLink="packages">
+            <i class="ni ni-ui-04 d-lg-none"></i>
+            <span class="nav-link-inner--text">Бронювання</span>
+          </a>
+          <a *ngIf="isLoggedIn" class="nav-link no-caret" data-toggle="dropdown" role="button" routerLink="packages">
+            <i class="ni ni-ui-04 d-lg-none"></i>
+            <span class="nav-link-inner--text">Тестування</span>
+          </a>
           <a [routerLink]="['packages/cart']" class="nav-link no-caret" data-toggle="dropdown" role="button" routerLink="packages">
             <i class="fa fa-shopping-cart"><span class="ml-1">{{ prod.getCartItems().length }}</span></i>
           </a>
@@ -103,7 +111,20 @@
             </a>
           </li>
         </ul>
-        <div  (click)="logout()" *ngIf="isLoggedIn"><a class="text-light link-light">{{ username }}</a></div>
+        <ul class="navbar-nav navbar-nav-hover align-items-lg-center">
+          <li class="nav-item dropdown">
+            <a class="nav-link no-caret" data-toggle="dropdown" role="button">
+              <i class="ni ni-collection d-lg-none"></i>
+              <span class="nav-link-inner--text">{{ username }}</span>
+            </a>
+            <div class="dropdown-menu">
+              <a [routerLink]="['/profile']" class="dropdown-item">Profile</a>
+              <a [routerLink]="['/profile/edit']" class="dropdown-item">Settings</a>
+              <a [routerLink]="" (click)="logout()" class="dropdown-item">Exit</a>
+            </div>
+          </li>
+        </ul>
+        
       </div>
     </div>
   </nav>

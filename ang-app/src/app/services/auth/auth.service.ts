@@ -20,7 +20,5 @@ export class AuthService {
     return this.http.post(this.AUTH_API + "signup",{username,email,password},this.httpOptions);
   }
 
-  test(){
-    console.log("TESTING_SOME_SHIT");
-  }
+
 }

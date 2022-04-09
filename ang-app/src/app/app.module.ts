@@ -21,6 +21,9 @@ import { authInterceptorProviders } from './helpers/auth.interceptor';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+// auth0/jwt
+import { JwtModule } from '@auth0/angular-jwt';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,7 +42,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     HttpClientModule,
     FormsModule,
     BrowserAnimationsModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: () => {
+          return localStorage.getItem("auth-token");
+        }
+      }
+    })
   ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent]

@@ -5,6 +5,8 @@ import 'rxjs/add/operator/filter';
 import { DOCUMENT } from '@angular/common';
 import { LocationStrategy, PlatformLocation, Location } from '@angular/common';
 import { TokenStorageService } from './services/token-storage/token-storage.service';
+import { AuthService } from './services/auth/auth.service';
+
 
 var didScroll;
 var lastScrollTop = 0;
@@ -23,13 +25,14 @@ export class AppComponent {
 
 
 
-
+    
     constructor( private renderer : Renderer2,
                  private router: Router,
                  @Inject(DOCUMENT,) private document: any,
                  private element : ElementRef,
                  public location: Location,
-                 private tokenStorage: TokenStorageService
+                 private tokenStorage: TokenStorageService,
+                 private authService: AuthService
                  ) {}
     @HostListener('window:scroll', ['$event'])
     hasScrolled() {
@@ -65,6 +68,12 @@ export class AppComponent {
         lastScrollTop = st;
     };
     ngOnInit() {
+    console.log(new Date());
+    // if(this.tokenStorage.getToken() != null && this.authService.isAuthenticated()){
+    //     console.log("we are here");
+    //     this.authService.logout();
+    //  } 
+
       var navbar : HTMLElement = this.element.nativeElement.children[0].children[0];
       // @ts-ignore
       this._router = this.router.events.filter(event => event instanceof NavigationEnd).subscribe((event: NavigationEnd) => {
@@ -91,7 +100,7 @@ export class AppComponent {
     
     }
 
-
+    
 
 
 }

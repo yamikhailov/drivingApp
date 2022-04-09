@@ -111,7 +111,7 @@
             </a>
           </li>
         </ul>
-        <ul class="navbar-nav navbar-nav-hover align-items-lg-center">
+        <ul *ngIf="isLoggedIn" class="navbar-nav navbar-nav-hover align-items-lg-center">
           <li class="nav-item dropdown">
             <a class="nav-link no-caret" data-toggle="dropdown" role="button">
               <i class="ni ni-collection d-lg-none"></i>

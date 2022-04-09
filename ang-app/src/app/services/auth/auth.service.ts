@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable} from "rxjs"
+import { JwtHelperService } from '@auth0/angular-jwt';
+import { TokenStorageService } from '../token-storage/token-storage.service';
+import { ConditionalExpr } from '@angular/compiler';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +13,15 @@ export class AuthService {
     headers: new HttpHeaders({'Content-Type': 'application/json'})
   };
   readonly AUTH_API = 'http://localhost:3000/api/auth/';
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private jwtHelper: JwtHelperService, private tokenService: TokenStorageService) { }
+
+
+  isAuthenticated(): boolean{
+   // console.log("we are inside");
+    const token = this.tokenService.getToken();
+    //console.log(this.jwtHelper.isTokenExpired(token || ''))
+    return this.jwtHelper.isTokenExpired(token || '');
+  }
   
   login(username: string, password: string): Observable<any>{
     return this.http.post(this.AUTH_API + 'signin',{username,password},this.httpOptions);
@@ -20,5 +31,9 @@ export class AuthService {
     return this.http.post(this.AUTH_API + "signup",{username,email,password},this.httpOptions);
   }
 
+  logout(){
+    this.tokenService.signOut();
+    window.location.reload();
+  }
 
 }

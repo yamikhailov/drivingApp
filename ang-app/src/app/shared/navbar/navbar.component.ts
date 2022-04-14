@@ -14,15 +14,16 @@ export class NavbarComponent implements OnInit {
   private lastPoppedUrl?: string;
   private yScrollStack: number[] = [];
 
-  isLoggedIn = false;
-  username = "";
-  private roles: string[] = [];
+  @Input() isLoggedIn = false;
+  @Input() username = "";
+  @Input() private roles: string[] = [];
 
 
   constructor(public location: Location, private router: Router, private tokenStorage: TokenStorageService, public prod: ProductService) {
   }
 
   ngOnInit() {
+    
     this.router.events.subscribe((event) => {
       this.isCollapsed = true;
       if (event instanceof NavigationStart) {
@@ -40,15 +41,14 @@ export class NavbarComponent implements OnInit {
        this.lastPoppedUrl = ev.url!;
    });
 
-
    // managing auth
-   this.isLoggedIn = !!this.tokenStorage.getToken();
-   if(this.isLoggedIn){
-       const user = this.tokenStorage.getUser();
-       this.roles = user.roles;
-       this.username = user.username;
+//    this.isLoggedIn = !!this.tokenStorage.getToken();
+//    if(this.isLoggedIn){
+//        const user = this.tokenStorage.getUser();
+//        this.roles = user.roles;
+//        this.username = user.username;
 
-   }
+//    }
   }
 
   logout(){

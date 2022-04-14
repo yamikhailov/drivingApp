@@ -73,7 +73,7 @@ exports.signin = function(req,res){
         if(!isValid){
             return res.status(401).send({accessToken: null, message: "Invalid Password!"});
         }    
-        let token = jwt.sign({id: user.id}, authConfig.secret, {expiresIn: 20});
+        let token = jwt.sign({id: user.id}, authConfig.secret, {expiresIn: 3600});
         let authRoles = [];
         for(let i = 0; i < user.roles.length; i++){
             authRoles.push(user.roles[i].name);

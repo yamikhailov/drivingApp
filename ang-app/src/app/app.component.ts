@@ -6,12 +6,14 @@ import { DOCUMENT } from '@angular/common';
 import { LocationStrategy, PlatformLocation, Location } from '@angular/common';
 import { TokenStorageService } from './services/token-storage/token-storage.service';
 import { AuthService } from './services/auth/auth.service';
+import { EventBusService } from './services/events/event-bus.service';
 
 
 var didScroll;
 var lastScrollTop = 0;
 var delta = 5;
 var navbarHeight = 0;
+
 
 @Component({
   selector: 'app-root',
@@ -23,8 +25,9 @@ export class AppComponent {
   // @ts-ignore
   private _router: Subscription;
 
-
-
+    isLoggedIn = false;
+    username = "";
+    private roles: string[] = [];
     
     constructor( private renderer : Renderer2,
                  private router: Router,
@@ -32,7 +35,8 @@ export class AppComponent {
                  private element : ElementRef,
                  public location: Location,
                  private tokenStorage: TokenStorageService,
-                 private authService: AuthService
+                 private authService: AuthService,
+                 private busService: EventBusService
                  ) {}
     @HostListener('window:scroll', ['$event'])
     hasScrolled() {
@@ -69,6 +73,14 @@ export class AppComponent {
     };
     ngOnInit() {
     console.log(new Date());
+
+    this.isLoggedIn = !!this.tokenStorage.getToken();
+    if(this.isLoggedIn){
+        const user = this.tokenStorage.getUser();
+        this.roles = user.roles;
+        this.username = user.username;
+ 
+    }
     // if(this.tokenStorage.getToken() != null && this.authService.isAuthenticated()){
     //     console.log("we are here");
     //     this.authService.logout();

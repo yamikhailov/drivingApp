@@ -6,12 +6,12 @@ const morgan = require('morgan');
 const dbConfig = require('./config/db.config')
 const db = require("./models");
 
-
+const init = require("./inits/init")
 const app = express();
 
 const port = 3000;
 
-
+const Item = db.item;
 const Role = db.role;
 
 db.mongoose
@@ -26,28 +26,10 @@ db.mongoose
 });
 
 function initialize_db(){
-    Role.collection.estimatedDocumentCount((err,count) => {
-       if(!err && count == 0){
-           new Role({name: "student"}).save(err => {
-            if(err){
-                 console.error(err); 
-            }
-            console.log("added user role to collection");
-        });
-           new Role({name: "instructor"}).save(err => {
-            if(err){
-                 console.error(err); 
-            }
-            console.log("added moderator role to collection");
-        });
-           new Role({name: "admin"}).save(err => {
-            if(err){
-                 console.error(err); 
-            }
-            console.log("added admin role to collection");
-        });
-       } 
-    })
+    // default init
+    init.initialize_roles();
+    init.initialize_items();
+ 
 }
 
 

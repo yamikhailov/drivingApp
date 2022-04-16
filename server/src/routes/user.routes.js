@@ -12,6 +12,6 @@ module.exports = function(app){
     app.get("/api/test/all", controller.allAccess);
     app.get("/api/test/instructor", [middle.authJWT.verifyToken, middle.authJWT.isInstructor], controller.instructorBoard);
     app.get("/api/test/admin", [middle.authJWT.verifyToken, middle.authJWT.isAdmin], controller.adminBoard);
-    // get user 
+    // get another user
     app.get("/api/getUser",[middle.authJWT.verifyToken], controller.getUser);
 }

@@ -92,3 +92,15 @@ exports.signin = function(req,res){
         })
     })
 }
+
+exports.updateUser = function(req,res){
+    console.log("here");
+    User.findByIdAndUpdate(req.userId, req.body,{new: true}, (err,output) => {
+        if(err){
+            res.status(500).send({message: err});
+            return;
+        }
+        res.status(200).send(output);
+        return;
+    });
+}

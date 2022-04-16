@@ -32,6 +32,11 @@ export class AuthService {
     return this.http.post(this.AUTH_API + "signup",{username,email,full_name,password,roles},this.httpOptions);
   }
 
+  updateUser(params: {}){
+    console.log("params: ", params);
+    return this.http.post(this.AUTH_API + "updateUser",params,this.httpOptions);
+  }
+
   logout(){
     this.tokenService.signOut();
     window.location.reload();

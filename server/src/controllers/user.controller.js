@@ -29,7 +29,8 @@ exports.getUser = function(req,res){
         res.status(200).send({
             username: user.username,
             email: user.email,
-            roles: user.roles
+            roles: user.roles,
+            image_url: user.image_url
         });
     });
 }

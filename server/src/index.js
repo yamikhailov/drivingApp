@@ -29,6 +29,7 @@ function initialize_db(){
     // default init
     init.initialize_roles();
     init.initialize_items();
+    init.initialize_admin();
  
 }
 

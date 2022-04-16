@@ -8,7 +8,8 @@ const User = mongoose.model("User",new mongoose.Schema({
             type: mongoose.Schema.Types.ObjectId,
             ref: "Role"
         }
-    ]
+    ],
+    image_url: String
 }));
 
 module.exports = User;

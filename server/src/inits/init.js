@@ -1,6 +1,12 @@
 const db = require('../models')
+const bcrypt = require("bcryptjs");
+
+const admin_username = "admin";
+const admin_password = "adminadmin";
+
 const Role = db.role;
 const Item = db.item;
+const User = db.user;
 exports.initialize_roles = function(){
 Role.collection.estimatedDocumentCount((err,count) => {
     if(!err && count == 0){
@@ -39,7 +45,8 @@ exports.initialize_items = function(){
                   lessons: 100
               }).save(err => {
                   if(err){
-                      console.err(err);
+                      console.error(err);
+                      return;
                   }
                   console.log("Express Packages was added!")
               });
@@ -53,7 +60,8 @@ exports.initialize_items = function(){
                   lessons: 150
               }).save(err => {
                   if(err){
-                      console.err(err);
+                      console.error(err);
+                      return;
                   }
                   console.log("Standard Package was added!")
               });
@@ -67,11 +75,35 @@ exports.initialize_items = function(){
                   lessons: 200
               }).save(err => {
                   if(err){
-                      console.err(err);
+                      console.error(err);
+                      return;
                   }
                   console.log("Professional Package was added!")
               });
   
           }
       })
+}
+
+exports.initialize_admin = function(){
+    User.collection.estimatedDocumentCount((err,count) => {
+        if(!err && count == 0){
+            Role.findOne({name: "admin"}, (err,role) => {
+                new User({
+                    username: "admin",
+                    email: "admin@gmail.com",
+                    password: bcrypt.hashSync(admin_password, 8),
+                    roles: [role._id],
+                    image_url: "https://icon-library.com/images/icon-admin/icon-admin-18.jpg"
+                }).save(err => {
+                    if(err){
+                        console.error(err);
+                        return;
+                    }
+                    console.log("Admin was added!");
+                });
+            });
+
+        }
+    });
 }

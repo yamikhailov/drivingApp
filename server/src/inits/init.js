@@ -90,11 +90,12 @@ exports.initialize_admin = function(){
         if(!err && count == 0){
             Role.findOne({name: "admin"}, (err,role) => {
                 new User({
+                    full_name: "John Doe",
                     username: "admin",
                     email: "admin@gmail.com",
                     password: bcrypt.hashSync(admin_password, 8),
                     roles: [role._id],
-                    image_url: "https://icon-library.com/images/icon-admin/icon-admin-18.jpg"
+                    image_url: "https://us.123rf.com/450wm/igoun/igoun1807/igoun180700768/105362942-king-user-icon-logo-design-element-admin-icon-administrator-crowned-king-sign-manager-symbol-power-u.jpg?ver=6"
                 }).save(err => {
                     if(err){
                         console.error(err);

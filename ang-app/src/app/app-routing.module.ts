@@ -17,7 +17,7 @@ const routes: Routes = [
   {path: 'signup', component: RegisterComponent},
   {path: 'profile/:username', component: ProfileViewComponent, canActivate: [AuthGuard]},
   {path: 'packages', loadChildren: () => import('./sections/package/package.module').then(m => m.PackageModule)},
-  {path: 'settings', component: SettingsComponent},
+  {path: 'settings', component: SettingsComponent, canActivate: [AuthGuard]},
   {path: '**', component: NotFoundComponent}
 ];
 

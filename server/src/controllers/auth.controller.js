@@ -7,6 +7,7 @@ const authConfig = require("../config/auth.config");
 
 exports.signup = function(req,res){
     const user = new User({
+        full_name: req.body.full_name,
         username: req.body.username,
         email: req.body.email,
         password: bcrypt.hashSync(req.body.password, 8),
@@ -82,9 +83,11 @@ exports.signin = function(req,res){
         }
         res.status(200).send({
             id: user._id,
+            full_name: user.full_name,
             username: user.username,
             email: user.email,
             roles: authRoles,
+            image_url: user.image_url,
             accessToken: token
         })
     })

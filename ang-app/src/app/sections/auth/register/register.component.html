@@ -44,7 +44,7 @@
                         <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
                       </div>
                       <!-- First input -->
-                      <input class="form-control" placeholder="Name" name="username" required [(ngModel)]="form.username" minlength="3" maxlength="20" #username="ngModel" type="text" (focus)="focus=true" (blur)="focus=false">
+                      <input class="form-control" placeholder="Username" name="username" required [(ngModel)]="form.username" minlength="3" maxlength="20" #username="ngModel" type="text" (focus)="focus=true" (blur)="focus=false">
                     </div>
                     <div class="alert-danger" *ngIf="username.errors && f.submitted">
                         <div *ngIf="username.errors.required">Username is required</div>
@@ -72,6 +72,27 @@
                         </div>
                       </div>
                   </div>
+
+                  <div class="form-group" [ngClass]="{'focused':focus===true}">
+                    <div class="input-group input-group-alternative mb-3">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="ni ni-single-02"></i></span>
+                      </div>
+                      <!-- First input -->
+                      <input class="form-control" placeholder="Full Name" name="full_name" required [(ngModel)]="form.full_name" minlength="3" maxlength="20" #full_name="ngModel" type="text" (focus)="focus=true" (blur)="focus=false">
+                    </div>
+                    <div class="alert-danger" *ngIf="full_name.errors && f.submitted">
+                        <div *ngIf="full_name.errors.required">Full name is required</div>
+                        <div *ngIf="full_name.errors.minlength">
+                          Full name must be at least 3 characters
+                        </div>
+                        <div *ngIf="full_name.errors.maxlength">
+                          Full name must be at most 20 characters
+                        </div>
+                      </div>
+                  </div>
+
+
                   <div class="form-group">
                     <div class="input-group input-group-alternative">
                       <select  [(ngModel)]="form.role" name="role" #role="ngModel" class="form-control custom-select form-select" required>

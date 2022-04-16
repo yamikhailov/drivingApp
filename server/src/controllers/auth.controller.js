@@ -30,7 +30,8 @@ exports.signup = function(req,res){
                         res.status(500).send({message: err});
                         return;
                     }
-                    res.send("User successfully created!")
+                    res.status(200).json({ok: true, message: "User successfully created!"});
+                    return;
 
                 });
             });

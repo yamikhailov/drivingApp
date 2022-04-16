@@ -23,6 +23,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // auth0/jwt
 import { JwtModule } from '@auth0/angular-jwt';
+import { SettingsComponent } from './sections/settings/settings.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { JwtModule } from '@auth0/angular-jwt';
     NotFoundComponent,
     LoginComponent,
     RegisterComponent,
-    ProfileViewComponent
+    ProfileViewComponent,
+    SettingsComponent
   ],
   imports: [
     BrowserModule,

@@ -1,5 +1,8 @@
 import { Component, OnInit, OnChanges, SimpleChange, SimpleChanges, Input} from '@angular/core';
 import { Package } from '../package';
+import { PaymentService } from 'src/app/services/payment/payment.service';
+
+
 @Component({
   selector: 'app-packages-cart-calculator',
   templateUrl: './packages-cart-calculator.component.html',
@@ -7,8 +10,9 @@ import { Package } from '../package';
 })
 export class PackagesCartCalculatorComponent implements OnInit {
 
+
   @Input() products: Package[] = [];
-  constructor() { }
+  constructor(private paymentService: PaymentService) { }
 
   
   totalPrice = 0;
@@ -25,4 +29,8 @@ export class PackagesCartCalculatorComponent implements OnInit {
   ngOnInit(): void {
   }
 
+
+  checkout() {
+    this.paymentService.checkout();
+  }
 }

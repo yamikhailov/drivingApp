@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { TokenStorageService } from 'src/app/services/token-storage/token-storage.service';
 import { User } from 'src/app/models/user';
 import { AuthService } from 'src/app/services/auth/auth.service';
+//import { loadStripe } from '@stripe/stripe-js';
+
+//const stripe = loadStripe("pk_test_51KptOMHxx7x5cn6bSu1RA05n9K6W1NZoMn5OekkqusG8KfUs7ZP89jHQ8fzyYtFYNcpJLrksHxPtoMmaO3yeSPoo00aYk8zCpV");
+
 @Component({
   selector: 'app-settings',
   templateUrl: './settings.component.html',
@@ -9,7 +13,6 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 })
 export class SettingsComponent implements OnInit {
   user: User = this.tokenStorage.getUser();
-
   form: any = {
     full_name: this.user.full_name,
     username: this.user.username,
@@ -27,6 +30,7 @@ export class SettingsComponent implements OnInit {
 
   ngOnInit(): void {
     this.setBadges();
+    
   }
 
 

@@ -8,6 +8,8 @@ import { NotFoundComponent } from './shared/not-found/not-found.component';
 import { ProfileViewComponent } from './sections/profile-view/profile-view.component';
 import { AuthGuardService as AuthGuard } from './services/auth/auth-guard.service';
 import { SettingsComponent } from './sections/settings/settings.component';
+import { SuccessComponent } from './sections/payment/success/success.component';
+import { FailComponent } from './sections/payment/fail/fail.component';
 
 
 
@@ -18,6 +20,8 @@ const routes: Routes = [
   {path: 'profile/:username', component: ProfileViewComponent, canActivate: [AuthGuard]},
   {path: 'packages', loadChildren: () => import('./sections/package/package.module').then(m => m.PackageModule)},
   {path: 'settings', component: SettingsComponent, canActivate: [AuthGuard]},
+  {path: 'payment/success', component: SuccessComponent, canActivate: [AuthGuard]},
+  {path: 'payment/fail', component: FailComponent, canActivate: [AuthGuard]},
   {path: '**', component: NotFoundComponent}
 ];
 

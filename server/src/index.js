@@ -1,5 +1,4 @@
 const express = require('express');
-const bodyParser = require('body-parser');
 const cors = require('cors');
 const helmet = require('helmet');
 const morgan = require('morgan');
@@ -36,7 +35,7 @@ function initialize_db(){
 
 // settings
 app.use(helmet());
-app.use(bodyParser.json());
+app.use('/payment/webhook', express.raw({type: "*/*"}));
 //app.use(cors());
 app.use(cors());
 app.use(express.json());
@@ -45,6 +44,7 @@ app.use(morgan('combined'));
 
 require('./routes/auth.routes')(app); 
 require('./routes/user.routes')(app);
+require('./routes/payment.routes')(app);
 
  app.get('/',(req,res) => {
      res.send("Test the world!");

@@ -115,7 +115,7 @@
           <li class="nav-item dropdown">
             <a class="nav-link no-caret" data-toggle="dropdown" role="button">
               <i class="ni ni-collection d-lg-none"></i>
-              <span class="nav-link-inner--text">{{ username }}</span>
+              <span class="nav-link-inner--text">{{ this.user.username }}</span>
             </a>
             <div class="dropdown-menu">
               <a [routerLink]="'/profile/' + username" class="dropdown-item">Profile</a>

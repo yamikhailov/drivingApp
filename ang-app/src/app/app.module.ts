@@ -25,6 +25,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { JwtModule } from '@auth0/angular-jwt';
 import { SettingsComponent } from './sections/settings/settings.component';
 
+//payment 
+import { NgxStripeModule } from 'ngx-stripe';
+import { SuccessComponent } from './sections/payment/success/success.component';
+import { FailComponent } from './sections/payment/fail/fail.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,7 +40,9 @@ import { SettingsComponent } from './sections/settings/settings.component';
     LoginComponent,
     RegisterComponent,
     ProfileViewComponent,
-    SettingsComponent
+    SettingsComponent,
+    SuccessComponent,
+    FailComponent
   ],
   imports: [
     BrowserModule,
@@ -51,7 +58,8 @@ import { SettingsComponent } from './sections/settings/settings.component';
           return localStorage.getItem("auth-token");
         }
       }
-    })
+    }),
+    NgxStripeModule.forRoot("pk_test_51KptOMHxx7x5cn6bSu1RA05n9K6W1NZoMn5OekkqusG8KfUs7ZP89jHQ8fzyYtFYNcpJLrksHxPtoMmaO3yeSPoo00aYk8zCpV")
   ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent]

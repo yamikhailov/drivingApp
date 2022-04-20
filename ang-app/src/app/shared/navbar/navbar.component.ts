@@ -3,6 +3,7 @@ import { Router, NavigationEnd, NavigationStart } from '@angular/router';
 import { Location, PopStateEvent } from '@angular/common';
 import { TokenStorageService } from 'src/app/services/token-storage/token-storage.service';
 import { ProductService } from 'src/app/services/product/product.service';
+import { User } from 'src/app/models/user';
 
 @Component({
   selector: 'app-navbar',
@@ -13,10 +14,12 @@ export class NavbarComponent implements OnInit {
   public isCollapsed = true;
   private lastPoppedUrl?: string;
   private yScrollStack: number[] = [];
-
+  user: User = this.tokenStorage.getUser();
   @Input() isLoggedIn = false;
+  uname = this.user.username;
   @Input() username = "";
   @Input() private roles: string[] = [];
+
 
 
   constructor(public location: Location, private router: Router, private tokenStorage: TokenStorageService, public prod: ProductService) {

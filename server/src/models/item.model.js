@@ -5,7 +5,6 @@ const Item = mongoose.model("Item", new mongoose.Schema({
     price: Number,
     img_url: String,
     description: String,
-    theory_hours: Number,
     lessons: Number
 }));
 

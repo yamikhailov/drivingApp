@@ -37,6 +37,11 @@ export class AuthService {
     return this.http.post(this.AUTH_API + "updateUser",params,this.httpOptions);
   }
 
+  getUser(){
+
+  }
+
+  
   logout(){
     this.tokenService.signOut();
     window.location.reload();

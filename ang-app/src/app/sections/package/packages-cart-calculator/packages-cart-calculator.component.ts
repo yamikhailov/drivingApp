@@ -10,7 +10,7 @@ import { PaymentService } from 'src/app/services/payment/payment.service';
 })
 export class PackagesCartCalculatorComponent implements OnInit {
 
-
+  prods: Package[] = [];
   @Input() products: Package[] = [];
   constructor(private paymentService: PaymentService) { }
 
@@ -19,18 +19,19 @@ export class PackagesCartCalculatorComponent implements OnInit {
 
   ngOnChanges(changes: SimpleChanges){
     const change: SimpleChange = changes.products;
-    let prods: Package[] = change.currentValue;
+    this.prods = change.currentValue;
     this.totalPrice = 0;
-    for(let prod of prods){
+    for(let prod of this.prods){
       this.totalPrice += +prod.price;
     }
   }
 
   ngOnInit(): void {
+    this.paymentService.getItems();
   }
 
 
   checkout() {
-    this.paymentService.checkout();
+    this.paymentService.checkout(this.prods,this.totalPrice);
   }
 }

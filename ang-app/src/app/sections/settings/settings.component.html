@@ -65,11 +65,11 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-sm-6 mb-3">
+                    <div *ngFor="let item of user.packages" class="col-sm-6 mb-3">
                         <div class="card h-100">
                           <div class="card-body">
-                            <h6 class="d-flex align-items-center mb-3"><b class="material-icons text-info mr-2">Professional</b>package course</h6>
-                            <small>course progress (15/60)</small>
+                            <h6 class="d-flex align-items-center mb-3"><b class="material-icons text-info mr-2">{{item.name}}</b> пакет</h6>
+                            <small>course progress (15/{{item.lessons}})</small>
                             <div class="progress mb-3" style="height: 5px">
                               <div class="progress-bar bg-success" role="progressbar" style="width: 72%" aria-valuenow="72" aria-valuemin="0" aria-valuemax="100"></div>
                             

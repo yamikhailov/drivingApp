@@ -16,7 +16,7 @@ exports.adminBoard = (req,res) => {
 
 exports.getUser = function(req,res){
     User.findOne({username: req.query.username})
-        .populate("roles","-__v -_id")
+        .populate("roles packages","-__v -_id")
         .exec((err,user) => {
         if(err){
             res.status(500).send({message: "Internal Error"});
@@ -30,6 +30,7 @@ exports.getUser = function(req,res){
             username: user.username,
             email: user.email,
             roles: user.roles,
+            packages: user.packages,
             image_url: user.image_url
         });
     });

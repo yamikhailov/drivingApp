@@ -1,7 +1,7 @@
 const db = require("../models");
 const User = db.user;
 const bcrypt = require("bcryptjs");
-const Role = require("../models/role.model");
+const Role = db.role;
 const jwt = require("jsonwebtoken");
 const authConfig = require("../config/auth.config");
 
@@ -11,6 +11,7 @@ exports.signup = function(req,res){
         username: req.body.username,
         email: req.body.email,
         password: bcrypt.hashSync(req.body.password, 8),
+        packages: [],
         image_url: "https://png.pngtree.com/png-vector/20190116/ourlarge/pngtree-vector-male-student-icon-png-image_322034.jpg"
     })
 
@@ -62,7 +63,7 @@ exports.signup = function(req,res){
 
 exports.signin = function(req,res){
     User.findOne({username: req.body.username})
-    .populate("roles","-__v")
+    .populate("roles packages","-__v")
     .exec(function(err, user){
         if(err){
             res.status(500).send({message: err});
@@ -87,6 +88,7 @@ exports.signin = function(req,res){
             username: user.username,
             email: user.email,
             roles: authRoles,
+            packages: user.packages,
             image_url: user.image_url,
             accessToken: token
         })

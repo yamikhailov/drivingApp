@@ -41,7 +41,6 @@ exports.initialize_items = function(){
                   price: 7000,
                   img_url: "https://i.imgur.com/dCtMkGx.jpeg",
                   description: "Get your license as soon as possible",
-                  theory_hours: 60,
                   lessons: 100
               }).save(err => {
                   if(err){
@@ -56,7 +55,6 @@ exports.initialize_items = function(){
                   price: 10000,
                   img_url: "https://i.imgur.com/IyEp7mf.jpeg",
                   description: "Standard most popular package",
-                  theory_hours: 80,
                   lessons: 150
               }).save(err => {
                   if(err){
@@ -71,7 +69,7 @@ exports.initialize_items = function(){
                   price: 15000,
                   img_url: "https://i.imgur.com/xyl4Bme.jpeg",
                   description: "Professional package for advanced drivers",
-                  theory_hours: 100,
+
                   lessons: 200
               }).save(err => {
                   if(err){
@@ -95,6 +93,7 @@ exports.initialize_admin = function(){
                     email: "admin@gmail.com",
                     password: bcrypt.hashSync(admin_password, 8),
                     roles: [role._id],
+                    packages: [],
                     image_url: "https://us.123rf.com/450wm/igoun/igoun1807/igoun180700768/105362942-king-user-icon-logo-design-element-admin-icon-administrator-crowned-king-sign-manager-symbol-power-u.jpg?ver=6"
                 }).save(err => {
                     if(err){

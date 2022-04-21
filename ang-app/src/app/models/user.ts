@@ -3,5 +3,6 @@ export interface User{
     username: string,
     email: string,
     image_url: string,
-    roles: string[]
+    roles: string[],
+    packages: any[]
 }

@@ -63,7 +63,7 @@ exports.signup = function(req,res){
 
 exports.signin = function(req,res){
     User.findOne({username: req.body.username})
-    .populate("roles packages","-__v")
+    .populate("roles","-__v")
     .exec(function(err, user){
         if(err){
             res.status(500).send({message: err});
@@ -88,7 +88,6 @@ exports.signin = function(req,res){
             username: user.username,
             email: user.email,
             roles: authRoles,
-            packages: user.packages,
             image_url: user.image_url,
             accessToken: token
         })

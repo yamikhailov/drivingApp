@@ -1,7 +1,7 @@
 const stripe = require("stripe")("sk_test_51KptOMHxx7x5cn6b3yfn0njVIEYR5SRpVC2PuhFO5iibB4WBYwIegWFHx8Cr31D2uMie0xccx9ec0nEiST7wccFE00Qd7yOISG");
 const db = require("../models/index");
 const User = db.user;
-
+const Course = db.course;
 exports.create_session = function(req,res){
     let line_items = [];
     console.log("USERNAME :", req.body.username);
@@ -53,17 +53,28 @@ const fullfillOrder = function(session,res){
         res.status(404).send({message: "User not found"});
       }
       for(let item of JSON.parse(session.metadata.prods)){
-        user.packages.push(item._id);
-      }
-      user.save((err) => {
-        if(err){
-            res.status(500).send({message: err});
+        const course =  new Course({
+          isActivated: false,
+          isFinished: false,
+          lessons_passed: 0,
+          item: item._id,
+          owner: user._id,
+        })
+        console.log("course id : ", course._id);
+        course.save(err => {
+          if(err){
+            res.status(400).send({message: err});
             return;
-        }
-        res.status(200).json({ok: true, message: "Order was successfully created!"});
-        return;
+          }
+          console.log("Course created!");
+        })
+        // create course
+        // push package id
+        // user.packages.push(course._id);
+      }
+      res.status(200).send({message: "Course(s) successfully created!"});
+      return;
     });
-    })
 }
 
 exports.manage_webhook = function(req,res){
@@ -82,6 +93,6 @@ exports.manage_webhook = function(req,res){
     if(event.type === 'checkout.session.completed'){
         const session = event.data.object;
         fullfillOrder(session,res);
+        return;
     }
-    res.status(200);
 }

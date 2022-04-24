@@ -42,7 +42,7 @@ import { FailComponent } from './sections/payment/fail/fail.component';
     ProfileViewComponent,
     SettingsComponent,
     SuccessComponent,
-    FailComponent
+    FailComponent,
   ],
   imports: [
     BrowserModule,

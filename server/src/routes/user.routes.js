@@ -14,4 +14,7 @@ module.exports = function(app){
     app.get("/api/test/admin", [middle.authJWT.verifyToken, middle.authJWT.isAdmin], controller.adminBoard);
     // get another user
     app.get("/api/getUser",[middle.authJWT.verifyToken], controller.getUser);
+    // needs to be constructed 
+    app.get("/api/getInstructors", [middle.authJWT.verifyToken], controller.getInstructors);
+    app.post("/api/setInstructor", [middle.authJWT.verifyToken], controller.setInstructor);
 }

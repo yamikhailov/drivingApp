@@ -2,9 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { TokenStorageService } from 'src/app/services/token-storage/token-storage.service';
 import { User } from 'src/app/models/user';
 import { AuthService } from 'src/app/services/auth/auth.service';
-//import { loadStripe } from '@stripe/stripe-js';
+import { UserService } from 'src/app/services/user/user.service';
 
-//const stripe = loadStripe("pk_test_51KptOMHxx7x5cn6bSu1RA05n9K6W1NZoMn5OekkqusG8KfUs7ZP89jHQ8fzyYtFYNcpJLrksHxPtoMmaO3yeSPoo00aYk8zCpV");
+// popup
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDate, NgbCalendar } from '@ng-bootstrap/ng-bootstrap';
+
+
 
 @Component({
   selector: 'app-settings',
@@ -12,13 +16,26 @@ import { AuthService } from 'src/app/services/auth/auth.service';
   styleUrls: ['./settings.component.scss']
 })
 export class SettingsComponent implements OnInit {
-  user: User = this.tokenStorage.getUser();
+  user: User = this.tokenStorage.getUser(); 
+  courses: any;
+  instructors: any;
   form: any = {
     full_name: this.user.full_name,
     username: this.user.username,
     email: this.user.email,
     image_url: this.user.image_url
   }
+  // popup
+  fromDate: NgbDate | undefined;
+  toDate: NgbDate | undefined;
+  hoveredDate: NgbDate | undefined;
+  closeResult: string | undefined;
+  model1 : NgbDate | undefined;
+  model2 : NgbDate | undefined;
+ 
+  // course
+  selected_course: any;
+
 
 
   isInstructor = false;
@@ -26,11 +43,12 @@ export class SettingsComponent implements OnInit {
   isAdmin = false;
 
   constructor(private tokenStorage: TokenStorageService,
-              private authService: AuthService) { }
+              private authService: AuthService,
+              private userService: UserService,
+              private modalService: NgbModal, calendar: NgbCalendar) { }
 
   ngOnInit(): void {
     this.setBadges();
-    
   }
 
 
@@ -61,4 +79,8 @@ export class SettingsComponent implements OnInit {
       }
     );
   }
+
+
+  
+  
 }

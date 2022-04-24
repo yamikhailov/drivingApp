@@ -19,6 +19,7 @@ const routes: Routes = [
   {path: 'signup', component: RegisterComponent},
   {path: 'profile/:username', component: ProfileViewComponent, canActivate: [AuthGuard]},
   {path: 'packages', loadChildren: () => import('./sections/package/package.module').then(m => m.PackageModule)},
+  {path: 'courses', loadChildren: () => import('./sections/course/course.module').then(m => m.CourseModule)},
   {path: 'settings', component: SettingsComponent, canActivate: [AuthGuard]},
   {path: 'payment/success', component: SuccessComponent, canActivate: [AuthGuard]},
   {path: 'payment/fail', component: FailComponent, canActivate: [AuthGuard]},

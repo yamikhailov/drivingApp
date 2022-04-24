@@ -19,7 +19,6 @@ const jwt = require("jsonwebtoken");
     });
 }
 
-
  isInstructor = function(req,res,next){
     User.findById(req.userId, (err, user) => {
         if(err){

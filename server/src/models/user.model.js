@@ -10,12 +10,6 @@ const User = mongoose.model("User",new mongoose.Schema({
             ref: "Role"
         }
     ],
-    packages: [
-        {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "Item" 
-        }
-    ],
     image_url: String
 }));
 

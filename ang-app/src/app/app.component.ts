@@ -28,7 +28,9 @@ export class AppComponent {
     isLoggedIn = false;
     username = "";
     private roles: string[] = [];
-    
+    eventBusSub?: Subscription;
+
+
     constructor( private renderer : Renderer2,
                  private router: Router,
                  @Inject(DOCUMENT,) private document: any,
@@ -71,9 +73,22 @@ export class AppComponent {
 
         lastScrollTop = st;
     };
+    
+    ngOnDestroy(): void{
+        if(this.eventBusSub){
+            this.eventBusSub.unsubscribe();
+        }
+    }
+
     ngOnInit() {
     console.log(new Date());
 
+    this.eventBusSub = this.busService.on('logout', () => {
+        console.log("triggering shit ---> > !");
+        this.tokenStorage.signOut();
+    });
+
+    
     this.isLoggedIn = !!this.tokenStorage.getToken();
     if(this.isLoggedIn){
         const user = this.tokenStorage.getUser();

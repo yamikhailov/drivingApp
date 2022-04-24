@@ -38,10 +38,10 @@ export class AuthService {
   }
 
   getUser(){
-
+    
   }
 
-  
+
   logout(){
     this.tokenService.signOut();
     window.location.reload();

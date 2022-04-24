@@ -36,7 +36,6 @@ function initialize_db(){
 // settings
 app.use(helmet());
 app.use('/payment/webhook', express.raw({type: "*/*"}));
-//app.use(cors());
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -46,6 +45,7 @@ require('./routes/auth.routes')(app);
 require('./routes/user.routes')(app);
 require('./routes/payment.routes')(app);
 require("./routes/item.routes")(app);
+require("./routes/course.routes")(app);
  app.get('/',(req,res) => {
      res.send("Test the world!");
  });

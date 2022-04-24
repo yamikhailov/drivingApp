@@ -10,6 +10,13 @@ Node: 14.16.1
 
 Install Angular CLI and dependencies
 
+Test webhook using stripeCLI
+
+```bash
+stripe listen --forward-to localhost:3000/payment/webhook
+```
+
+
 ```bash
 npm install -g @angular/cli
 

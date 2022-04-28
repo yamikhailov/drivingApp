@@ -1,7 +1,8 @@
 
-<div class="px-4 px-lg-0 pt-5">
+<div class="container">
+<div *ngIf="products.length > 0" class="px-4 px-lg-0 pt-5">
     <!-- For demo purpose -->
-    <div class="container text-white py-5 text-center">
+    <div class=" text-white py-5 text-center">
 
     </div>
     <!-- End -->
@@ -17,13 +18,13 @@
                 <thead>
                   <tr>
                     <th scope="col" class="border-0 bg-light">
-                      <div class="p-2 px-3 text-uppercase">Product</div>
+                      <div class="p-2 px-3 text-uppercase">Товар</div>
                     </th>
                     <th scope="col" class="border-0 bg-light">
-                      <div class="py-3 text-uppercase">Price</div>
+                      <div class="py-3 text-uppercase">Ціна</div>
                     </th>
                     <th scope="col" class="border-0 bg-light">
-                      <div class="py-3 text-uppercase">Remove</div>
+                      <div class="py-3 text-uppercase">Видалити</div>
                     </th>
                   </tr>
                 </thead>
@@ -92,4 +93,9 @@
 
       </div>
     </div>
+    
   </div>
+    <div *ngIf="products.length == 0" class="not-found text-center">
+        <h2 class="mt-5">У вашому кошику не знайдено жодних товарів!</h2>  
+        <button type="button" routerLink="/packages" class="btn btn-info mt-3 py-2">Знайти товари</button> 
+    </div></div>

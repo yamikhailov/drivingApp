@@ -15,7 +15,7 @@ export class SuccessComponent implements OnInit {
               private tokenStorage: TokenStorageService) { }
 
   ngOnInit(): void {
-    // this.productService.clearCart();
+    this.productService.clearCart();
     // let user = this.tokenStorage.getUser();
     // this.userService.getUser(user.username).subscribe(out => {
     //   this.tokenStorage.saveUser(Object.assign(user,out));

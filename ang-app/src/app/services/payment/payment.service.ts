@@ -34,7 +34,7 @@ export class PaymentService {
     let user = this.tokenStorage.getUser();
     console.log(prods);
     if(Object.keys(user).length == 0){
-      this.router.navigate(['/signup']);
+      this.router.navigate(['/signin']);
       return;
     }
     this.http.post("http://localhost:3000/payment/create-checkout",{prods: JSON.stringify(prods),totalPrice,username: user.username},this.httpOptions)

@@ -46,6 +46,8 @@ require('./routes/user.routes')(app);
 require('./routes/payment.routes')(app);
 require("./routes/item.routes")(app);
 require("./routes/course.routes")(app);
+//require("./routes/booking.routes")(app);
+
  app.get('/',(req,res) => {
      res.send("Test the world!");
  });

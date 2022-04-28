@@ -23,3 +23,12 @@ npm install -g @angular/cli
 npm install
 
 ```
+
+## Environment variables
+
+Create .env files in server folder
+- MONGODB_HOST
+- MONGODB_PORT
+- MONGODB_DB
+- SECRET_KEY
+

@@ -1,5 +1,9 @@
+require("dotenv").config();
+
+
+
 module.exports = {
-    HOST: "192.168.56.101",
-    PORT: 27017,
-    DB: "driving"
+    HOST: process.env.MONGODB_HOST,
+    PORT: process.env.MONGODB_PORT,
+    DB:   process.env.MONGODB_DB
 }

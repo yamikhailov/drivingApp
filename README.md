@@ -10,6 +10,7 @@ Node: 14.16.1
 
 Install Angular CLI and dependencies
 
+
 Test webhook using stripeCLI
 
 ```bash
@@ -26,7 +27,7 @@ npm install
 
 ## Environment variables
 
-Create .env files in server folder
+Create .env file in server folder and configure mongodb
 - MONGODB_HOST
 - MONGODB_PORT
 - MONGODB_DB

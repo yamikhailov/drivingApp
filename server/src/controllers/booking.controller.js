@@ -33,38 +33,24 @@ exports.findByHour = function(req,res){
 }
 
 exports.setBooking = function(req,res){
-    Course.find({_id: req.body.course_id}, (err, course) => {
-        if(err){
-            return res.status(400).send({message: err});
-        }
-        if(cour)
-        if(course.owner != req.userId || !course.isActivated){
-            res.status(403).send({message: "Not Authorized to create booking!"})
-            return;
-        }
-        const ourdate = ('0' + req.body.day).slice(-2) + '/' + ('0' + req.body.month).slice(-2) + '/' + req.body.year;
-        if(!validateDate(ourdate,responseType="boolean", dateFormat="dd/mm/yyyy")){
-            res.status(400).send({message: "Invalid date!"})
-        }
-        if(req.body.hour < open_hours || req.body.hour > closing_time){
-            res.status(400).send({message: "Invalid working hours!"});
-        }
-        
+        console.log("Set booking controller");
         const booking = new Booking({
-            year: req.body.year,
-            month: req.body.month,
-            day: req.body.day,
-            hour: req.body.hour,
-            course: req.body.course_id
+            year: req.year,
+            month: req.month,
+            day: req.day,
+            hour: req.hour,
+            course: req.course_id
         });
+        console.log("our booking", booking);
         booking.save(err => {
             if(err){
                 res.status(400).send({message: err});
                 return;
             }
-            return res.status(200).send({message: "Booking created successfully"});
+            console.log("HEREEEEE");
+            res.status(200).send({message: "Booking created successfully"});
+            return;
         });
-    })
 }
 
 
@@ -72,12 +58,28 @@ exports.setBooking = function(req,res){
 
 
 // local functions
+// delete later
+function check_booking(year,month,day,hour){
+    Booking.findOne({year: year,month: month,day: day,hour: hour}, (err,result) => {
+        if(err){
+            console.log(err);
+            return false;
+        }
+        if(result){
+            return "yes";
+        }
+        return "no";
+    });
+}
+
 
 function validate_date(year,month,day,hour){
     let cur_date = new Date();
-        // if(year < cur_date.getFullYear ||
-        // month  < cur_date.getMonth  ||){
-        
+        if(year < cur_date.getFullYear ||
+           month  < cur_date.getMonth){
+            return false;
+          }
+    return true;
         //   }
 }
 

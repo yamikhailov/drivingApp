@@ -12,5 +12,8 @@ module.exports = function(app){
     
     app.get("/api/booking/findByDay",[middle.authJWT.verifyToken], controller.findByDay);
     app.get("/api/booking/findByHour",[middle.authJWT.verifyToken], controller.findByHour);
-    app.post("/api/booking/setBooking", [middle.authJWT.verifyToken], controller.setBooking)
+    app.post("/api/booking/setBooking", [middle.authJWT.verifyToken,
+                                         middle.verifyBooking.validateCourse,
+                                         middle.verifyBooking.validateDate,
+                                         middle.verifyBooking.isDateAvailable], controller.setBooking);
 }

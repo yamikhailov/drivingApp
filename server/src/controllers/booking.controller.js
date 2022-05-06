@@ -9,7 +9,7 @@ const closing_time = 19;
 
 // exports functions 
 exports.findByDay = function(req,res){
-    Booking.find({year: req.query.year, month: req.query.month, day: req.query.day})
+    Booking.find({"course.instructor": req.course.instructor, year: req.query.year, month: req.query.month, day: req.query.day})
     .select(["hour"])
     .exec((err, results) => {
         if(err){
@@ -53,34 +53,18 @@ exports.setBooking = function(req,res){
         });
 }
 
-
-
-
-
-// local functions
-// delete later
-function check_booking(year,month,day,hour){
-    Booking.findOne({year: year,month: month,day: day,hour: hour}, (err,result) => {
+exports.isDayAvailable = function(req,res){
+    Booking.find({day: req.body.day, month: req.body.month, year: req.body.year, instructor: req.course.instructor}, (err,courses) => {
         if(err){
-            console.log(err);
-            return false;
+            return res.status(400).send({message: err});
         }
-        if(result){
-            return "yes";
-        }
-        return "no";
+        res.status(200).send(courses.map(course => course.hour));
     });
 }
 
 
-function validate_date(year,month,day,hour){
-    let cur_date = new Date();
-        if(year < cur_date.getFullYear ||
-           month  < cur_date.getMonth){
-            return false;
-          }
-    return true;
-        //   }
-}
+
+
+
 
 

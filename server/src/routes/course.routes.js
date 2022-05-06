@@ -14,5 +14,4 @@ module.exports = function(app){
     
     app.get("/api/course/getCourses", [middle.authJWT.verifyToken], controller.getCourses);
    // app.post("/api/course/setInstructor", [middle.authJWT.verifyToken], controller.setInstructor);
-
 }

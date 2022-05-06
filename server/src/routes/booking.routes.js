@@ -10,10 +10,13 @@ module.exports = function(app){
         next();
     });
     
-    app.get("/api/booking/findByDay",[middle.authJWT.verifyToken], controller.findByDay);
+    app.post("/api/booking/findByDay",[middle.authJWT.verifyToken, middle.verifyBooking.validateCourse], controller.findByDay);
     app.get("/api/booking/findByHour",[middle.authJWT.verifyToken], controller.findByHour);
     app.post("/api/booking/setBooking", [middle.authJWT.verifyToken,
                                          middle.verifyBooking.validateCourse,
                                          middle.verifyBooking.validateDate,
                                          middle.verifyBooking.isDateAvailable], controller.setBooking);
+    
+    app.post("/api/booking/isDayAvailable", [middle.authJWT.verifyToken,
+                                            middle.verifyBooking.validateCourse], controller.isDayAvailable)
 }

@@ -17,6 +17,7 @@ validateCourse = function(req,res,next){
             res.status(400).send({message: "Course does not belong to the user!"});
             return;
        }
+       req.course = course;
        next();
     });
 }
